@@ -1,6 +1,7 @@
 import 'package:chat_app/screens/login_screen.dart';
 import 'package:chat_app/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static String id = 'welcome_screen';
@@ -23,9 +24,16 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           children: <Widget>[
             Row(
               children: <Widget>[
-                Container(
-                  child: Image.asset('images/logo.png'),
-                  height: 60.0,
+                Padding(
+                  padding: EdgeInsets.only(right: 15),
+                                  child: Hero(
+                    tag:'logo',
+                                    child: Container(
+                      child: SvgPicture.asset('assets/icons_logos/speech-bubble.svg'),
+                      height: 60.0,
+                      width: 60,
+                    ),
+                  ),
                 ),
                 Text(
                   'Chat App',
@@ -43,7 +51,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               padding: EdgeInsets.symmetric(vertical: 16.0),
               child: Material(
                 elevation: 5.0,
-                color: Colors.lightBlueAccent,
+                color: Colors.purpleAccent.withBlue(120),
                 borderRadius: BorderRadius.circular(30.0),
                 child: MaterialButton(
                   onPressed: () {
@@ -61,7 +69,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 16.0),
               child: Material(
-                color: Colors.blueAccent,
+                color: Colors.deepPurpleAccent.withRed(100),
                 borderRadius: BorderRadius.circular(30.0),
                 elevation: 5.0,
                 child: MaterialButton(
