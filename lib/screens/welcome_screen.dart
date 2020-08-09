@@ -97,7 +97,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 TypewriterAnimatedTextKit(
                   speed: Duration(milliseconds: 400),
                   //isRepeatingAnimation: true,
-                  repeatForever: true,
+                  // repeatForever: true,
                   text: ['Chat App'],
                   textStyle: TextStyle(
                     fontSize: 45.0,

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({
-    this.hintText
-  });
+  const CustomTextField({this.hintText, this.onChanged});
 
   final String hintText;
+  final Function onChanged;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      textAlign: TextAlign.center,
       onChanged: (value) {
         //Do something with the user input.
       },
