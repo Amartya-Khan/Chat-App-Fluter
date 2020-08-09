@@ -17,8 +17,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   String email;
   String password;
   //vars for acc details of users
+
+
+
   @override
   Widget build(BuildContext context) {
+    final screen= MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
@@ -126,7 +130,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 //try and catch methods are used to make sure that the user email and password and other details are correct
               },
             ),
-          ],
+            Center(child: Text('Passwords need to be at least 6 characters long', style: TextStyle(letterSpacing: 0.01, wordSpacing: 0.001),),)
+            ],
         ),
       ),
     );

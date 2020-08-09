@@ -13,9 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      // theme: ThemeData.dark().copyWith(
-      //   textTheme: TextTheme(bodyText2: TextStyle(color: Colors.black54) ),
-      // ),
+      theme: ThemeData( primarySwatch:  Colors.purple,
+      ),
       initialRoute: WelcomeScreen.id,
       //can't use home property with initial routes property
       //here we called the id var without creating an object of class and wasting recources

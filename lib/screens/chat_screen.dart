@@ -27,61 +27,64 @@ class _ChatScreenState extends State<ChatScreen> {
       final user = await _auth.currentUser();
       if (user != null) {
         logggedInUser = user;
+        print(user.email);
       }
     } catch (e) {
       print(e);
-    }}
-    //above web method can fail so put it in try and catch
-
-    @override
-    Widget build(BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
-          leading: null,
-          actions: <Widget>[
-            IconButton(
-                icon: Icon(Icons.close),
-                onPressed: () {
-                  //Implement logout functionality
-                }),
-          ],
-          title: Text('⚡️Chat'),
-          backgroundColor: Colors.lightBlueAccent,
-        ),
-        body: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Container(
-                decoration: kMessageContainerDecoration,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Expanded(
-                      child: TextField(
-                        onChanged: (value) {
-                          //Do something with the user input.
-                        },
-                        decoration: kMessageTextFieldDecoration,
-                      ),
-                    ),
-                    FlatButton(
-                      onPressed: () {
-                        //Implement send functionality.
-                      },
-                      child: Text(
-                        'Send',
-                        style: kSendButtonTextStyle,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
     }
   }
+  //above web method can fail so put it in try and catch
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: null,
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.close),
+              onPressed: () {
+                _auth.signOut();
+                Navigator.pop(context);
+                //Implement logout functionality
+              }),
+        ],
+        title: Text('Chat'),
+        backgroundColor: Colors.deepPurpleAccent.withRed(100).withAlpha(210),
+      ),
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Container(
+              decoration: kMessageContainerDecoration,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Expanded(
+                    child: TextField(
+                      onChanged: (value) {
+                        //Do something with the user input.
+                      },
+                      decoration: kMessageTextFieldDecoration,
+                    ),
+                  ),
+                  FlatButton(
+                    onPressed: () {
+                      //Implement send functionality.
+                    },
+                    child: Text(
+                      'Send',
+                      style: kSendButtonTextStyle,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
