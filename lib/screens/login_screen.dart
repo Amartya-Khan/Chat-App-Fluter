@@ -34,6 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
               },
               decoration: InputDecoration(
                 hintText: 'Enter your email',
+                hintStyle: TextStyle(color: Colors.grey.withOpacity(0.65), fontWeight: FontWeight.w500),
                 contentPadding:
                     EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                 border: OutlineInputBorder(
@@ -41,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderSide:
-                      BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                      BorderSide(color: Colors.purpleAccent.withBlue(120), width: 1.0),
                   borderRadius: BorderRadius.all(Radius.circular(32.0)),
                 ),
                 focusedBorder: OutlineInputBorder(
@@ -60,6 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
               },
               decoration: InputDecoration(
                 hintText: 'Enter your password.',
+                hintStyle: TextStyle(color: Colors.grey.withOpacity(0.65), fontWeight: FontWeight.w500),
                 contentPadding:
                     EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                 border: OutlineInputBorder(
@@ -67,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderSide:
-                      BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                      BorderSide(color: Colors.purpleAccent.withBlue(120), width: 1.0),
                   borderRadius: BorderRadius.all(Radius.circular(32.0)),
                 ),
                 focusedBorder: OutlineInputBorder(
@@ -83,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 16.0),
               child: Material(
-                color: Colors.lightBlueAccent,
+                color: Colors.deepPurpleAccent.withRed(100).withAlpha(210),
                 borderRadius: BorderRadius.all(Radius.circular(30.0)),
                 elevation: 5.0,
                 child: MaterialButton(
