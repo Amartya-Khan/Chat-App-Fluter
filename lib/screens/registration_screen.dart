@@ -2,6 +2,7 @@ import 'package:chat_app/components/rounded_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'chat_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static String id = 'registration_screen';
@@ -114,6 +115,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       email: email, password: password);
                   //this func returns a future because we don't want the user interface to be hanging while these values are authenticated
                   //The future is captured and placed inside a new final variable names newUser
+
+                  //now we will check that that new user != null
+                  if (newUser != null) {
+                    Navigator.pushNamed(context, ChatScreen.id);
+                  }
                 } catch (e) {
                   print(e);
                 } //async and await ensures that a new user has been created and authenticated
