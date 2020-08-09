@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:chat_app/components/rounded_button.dart';
+import 'package:chat_app/components/custom_text_field.dart';
 
 class LoginScreen extends StatefulWidget {
   static String id = 'login_screen';
@@ -20,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
           children: <Widget>[
             Hero(
               tag: 'logo',
-                          child: Container(
+              child: Container(
                 height: 200.0,
                 child: SvgPicture.asset('assets/icons_logos/speech-bubble.svg'),
               ),
@@ -28,77 +30,20 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(
               height: 48.0,
             ),
-            TextField(
-              onChanged: (value) {
-                //Do something with the user input.
-              },
-              decoration: InputDecoration(
-                hintText: 'Enter your email',
-                hintStyle: TextStyle(color: Colors.grey.withOpacity(0.65), fontWeight: FontWeight.w500),
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Colors.purpleAccent.withBlue(120), width: 1.0),
-                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Colors.lightBlueAccent, width: 2.0),
-                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                ),
-              ),
-            ),
+            CustomTextField(hintText: 'Enter your email',),
             SizedBox(
               height: 8.0,
             ),
-            TextField(
-              onChanged: (value) {
-                //Do something with the user input.
-              },
-              decoration: InputDecoration(
-                hintText: 'Enter your password.',
-                hintStyle: TextStyle(color: Colors.grey.withOpacity(0.65), fontWeight: FontWeight.w500),
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Colors.purpleAccent.withBlue(120), width: 1.0),
-                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Colors.lightBlueAccent, width: 2.0),
-                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                ),
-              ),
-            ),
+            CustomTextField(hintText: 'Enter your password',),
             SizedBox(
               height: 24.0,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                color: Colors.deepPurpleAccent.withRed(100).withAlpha(210),
-                borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                elevation: 5.0,
-                child: MaterialButton(
-                  onPressed: () {
-                    //Implement login functionality.
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Log In',
-                  ),
-                ),
-              ),
+            RoundedButton(
+              color: Colors.deepPurpleAccent.withRed(100).withAlpha(210),
+              title: 'Log In',
+              onPressed: () {
+                //Implement registration functionality.
+              },
             ),
           ],
         ),
@@ -106,3 +51,4 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
+

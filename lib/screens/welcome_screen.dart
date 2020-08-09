@@ -3,6 +3,7 @@ import 'package:chat_app/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:chat_app/components/rounded_button.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static String id = 'welcome_screen';
@@ -59,7 +60,10 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     //WHEN YOU APPLY CURVED ANIMATION TO PARENT THAT PARENT CAN'T HAVE UPPER BOUND>1
     //now this lets us use "animation.value" instead of 'controller.value' because the former is applied as cover to the latter
 
-    animation = ColorTween(begin:Colors.purpleAccent.withBlue(120).withAlpha(100), end: Colors.white).animate(controller);
+    animation = ColorTween(
+            begin: Colors.purpleAccent.withBlue(120).withAlpha(100),
+            end: Colors.white)
+        .animate(controller);
   }
 
   @override
@@ -98,6 +102,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   textStyle: TextStyle(
                     fontSize: 45.0,
                     fontWeight: FontWeight.w900,
+                    color: Colors.grey[700],
                   ),
                 ),
               ],
@@ -105,47 +110,26 @@ class _WelcomeScreenState extends State<WelcomeScreen>
             SizedBox(
               height: 48.0,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                elevation: 5.0,
-                color: Colors.purpleAccent.withBlue(120),
-                borderRadius: BorderRadius.circular(30.0),
-                child: MaterialButton(
-                  onPressed: () {
-                    //Go to login screen.
-                    Navigator.pushNamed(context, LoginScreen.id);
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Log In',
-                  ),
-                ),
-              ),
+            RoundedButton(
+              title: 'Log In',
+              color: Colors.purpleAccent.withBlue(120),
+              onPressed: () {
+                //Go to login screen.
+                Navigator.pushNamed(context, LoginScreen.id);
+              },
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                color: Colors.deepPurpleAccent.withRed(100).withAlpha(210),
-                borderRadius: BorderRadius.circular(30.0),
-                elevation: 5.0,
-                child: MaterialButton(
-                  onPressed: () {
-                    //Go to registration screen.
-                    Navigator.pushNamed(context, RegistrationScreen.id);
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Register',
-                  ),
-                ),
-              ),
-            ),
+            RoundedButton(
+              title: 'Register',
+              color: Colors.deepPurpleAccent.withRed(100).withAlpha(210),
+              onPressed: () {
+                //Go to registration screen.
+                Navigator.pushNamed(context, RegistrationScreen.id);
+              },
+            )
           ],
         ),
       ),
     );
   }
 }
+
