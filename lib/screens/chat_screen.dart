@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ChatScreen extends StatefulWidget {
   static String id = 'chat_screen';
@@ -41,6 +42,27 @@ class _ChatScreenState extends State<ChatScreen> {
   }
   //above web method can fail so put it in try and catch
 
+  void getMessages() async {
+    final messages = await _firestore.collection('messages').getDocuments();
+
+    for (var message in messages.documents) {
+      print(message.data);
+    }
+  }
+
+  void messagesStream() async {
+    //snapshots returns a stream of data instead of returning a single future var
+    //for each snapshot in bunch of snapshots
+    await for( var snapshot in _firestore.collection('messages').snapshots()){
+      //snapshot.documents = list of documents so we use for-in loop again
+      for (var message in snapshot.documents) {
+      print(message.data);
+    }
+
+      
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,10 +70,11 @@ class _ChatScreenState extends State<ChatScreen> {
         leading: null,
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.close),
+              icon: FaIcon(FontAwesomeIcons.signOutAlt),
               onPressed: () {
-                _auth.signOut();
-                Navigator.pop(context);
+                messagesStream();
+                // _auth.signOut();
+                // Navigator.pop(context);
                 //Implement logout functionality
               }),
         ],

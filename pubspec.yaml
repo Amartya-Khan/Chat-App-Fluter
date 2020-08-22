@@ -34,6 +34,8 @@ dependencies:
   firebase_core:
   cloud_firestore:
   modal_progress_hud:
+  google_fonts:
+  font_awesome_flutter:
 
 dev_dependencies:
   flutter_test:
