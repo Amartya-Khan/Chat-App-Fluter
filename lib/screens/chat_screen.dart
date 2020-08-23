@@ -53,13 +53,11 @@ class _ChatScreenState extends State<ChatScreen> {
   void messagesStream() async {
     //snapshots returns a stream of data instead of returning a single future var
     //for each snapshot in bunch of snapshots
-    await for( var snapshot in _firestore.collection('messages').snapshots()){
+    await for (var snapshot in _firestore.collection('messages').snapshots()) {
       //snapshot.documents = list of documents so we use for-in loop again
       for (var message in snapshot.documents) {
-      print(message.data);
-    }
-
-      
+        print(message.data);
+      }
     }
   }
 
@@ -86,6 +84,54 @@ class _ChatScreenState extends State<ChatScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            StreamBuilder<QuerySnapshot>(
+              stream: _firestore.collection('messages').snapshots(),
+              //The above fetches the query snapshots which is a stream
+              //The query snapshot is a class from firebase which will utimately contain the chat messages that we're after.
+              //stream builder now knows when new data comes  so that it can rebuild itself
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      backgroundColor: Colors.deepPurple[400],
+                    ),
+                  );
+                }
+                //self explanatory name
+                final messages = snapshot.data.documents;
+                //above is how we access data in async snapshot
+                //async snapshot = contains a query snapshot from firebase
+                //we access this query snapshot through data property
+                //now we are dealing with a query snapshot object so we can use the query snapshot's properties like the documents properties = list of document snapshots
+
+                List<Text> messageWidgets = [];
+                for (var message in messages) {
+                  final messageText = message.data['text'];
+                  //name of key in hash of message where [ text(key)= actual chat message(value) & sender(key) = actual sender email (value) ]
+                  final messageSender = message.data['sender'];
+
+                  final messageWidget = Text('$messageText from $messageSender',
+                      style: TextStyle(
+                        fontSize:20   ,
+                      ));
+                  messageWidgets.add(messageWidget);
+                }
+                return Expanded(
+                  child: ListView(
+                    padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20),
+                    children: messageWidgets,
+                  ),
+                );
+              },
+              //docs say we need to provide a build strategy ~ which is the logic for what the stream builder will actually do.
+              //the builder needs to rebuild all the children of the steam builder, namely the column and text widgets
+              //we don't use the firebase's query snapshot tho, here we are using flutter's async snapshot. however the latter contains the former.
+              //async snapshot represents the most recent interaction with the stream
+              //our chat messages are buried in this async snapshot. and we can get access to it through the builder.
+
+              //builder is something that takes an anonymous callback and has 2 inputs
+              //so its going to trigger the callback passing in the context and also the snapshot then it returns an actual widget. our builder will return a text widget col.
+            ),
             Container(
               decoration: kMessageContainerDecoration,
               child: Row(
@@ -119,6 +165,20 @@ class _ChatScreenState extends State<ChatScreen> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class MessageBubble extends StatelessWidget {
+  const MessageBubble({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.deepPurpleAccent[400],
+      child: Text('test'),
+      decoration: BoxDecoration(),
+      
     );
   }
 }
