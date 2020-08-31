@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData( primarySwatch:  Colors.purple,
       ),
       initialRoute: WelcomeScreen.id,
+      debugShowCheckedModeBanner: false,
       //can't use home property with initial routes property
       //here we called the id var without creating an object of class and wasting recources
       routes: {
